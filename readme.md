@@ -4,7 +4,8 @@
 ## **Introduction**
 ---
 - This repo is my playground for practices.
-- Contents:
+- What am I going to practice?
+	- git and github
 	- markdown file
 	- spark
 	- django
