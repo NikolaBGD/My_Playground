@@ -1,4 +1,4 @@
-# **My Playground`**
+# **My Playground**
 ---
 
 ## **Introduction**
