@@ -10,6 +10,10 @@ df = spark.read.load("./test.csv", format = "csv")
 print ("df.show():============================")
 df.show()
 
+
+print ("============================df.printSchema():============================")
+df.printSchema()
+
 print ("============================df.select(\"_c0\",\"_c1\").show():============================")
 df.select("_c0","_c1").show()
 
