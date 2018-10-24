@@ -7,8 +7,21 @@ spark = SparkSession \
     .getOrCreate()
 
 df = spark.read.load("./test.csv", format = "csv")
-print ("df.show():\n------------------------")
+print ("df.show():============================")
 df.show()
 
-print ("\n------------------------\ndf.select(\"_c0\",\"_c1\").show():\n------------------------")
+print ("============================df.select(\"_c0\",\"_c1\").show():============================")
 df.select("_c0","_c1").show()
+
+print ("\n============================\ndf.select(df['_c0'], df['_c2'] + 1).show():============================")
+df.select(df['_c0'], df['_c2'] + 1).show()
+
+print ("\n============================\ndf.select(df._c0).show():\n============================")
+df.select(df._c0).show()
+
+print ("\n============================\ndf.filter(df['_c2'] > 22).show():\n============================")
+df.filter(df['_c2'] > 22).show()
+
+print ("\n============================\ndf.groupBy(\"_c2\").count().show():\n============================")
+df.groupBy("_c2").count().show()
+
