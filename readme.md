@@ -11,4 +11,4 @@
 	- django
 	- flask
 	- leetcode
-	- linux administration related syntax and concepts`
+	- linux administration related syntax and concepts
