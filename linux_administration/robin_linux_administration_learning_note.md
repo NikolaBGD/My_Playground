@@ -38,51 +38,79 @@
 		- `cat test.json`
 			- `{"title":"Person","type":"object","properties":{"firstName":{"type":"string"},"lastName":{"type":"string"},"age":{"description":"Age in years","type":"integer","minimum":0}},"required":["firstName","lastName"]}`
 		- `cat test.json | python -m json.tool`
-			- ```
-			{
-    "properties": {
-        "age": {
-            "description": "Age in years",
-            "minimum": 0,
-            "type": "integer"
-        },
-        "firstName": {
-            "type": "string"
-        },
-        "lastName": {
-            "type": "string"
-        }
-    },
-    "required": [
-        "firstName",
-        "lastName"
-    ],
-    "title": "Person",
-    "type": "object"
-}
+			```
+            {
+                "properties": {
+                    "age": {
+                        "description": "Age in years",
+                        "minimum": 0,
+                        "type": "integer"
+                    },
+                    "firstName": {
+                        "type": "string"
+                    },
+                    "lastName": {
+                        "type": "string"
+                    }
+                },
+                "required": [
+                    "firstName",
+                    "lastName"
+                ],
+                "title": "Person",
+                "type": "object"
+            }
 			```
 		- `cat test.json | jq` (you must install jq first.)
-			- ```
-			{
-  "title": "Person",
-  "type": "object",
-  "properties": {
-    "firstName": {
-      "type": "string"
-    },
-    "lastName": {
-      "type": "string"
-    },
-    "age": {
-      "description": "Age in years",
-      "type": "integer",
-      "minimum": 0
-    }
-  },
-  "required": [
-    "firstName",
-    "lastName"
-  ]
-}
 			```
-
+            {
+                "title": "Person",
+                "type": "object",
+                "properties": {
+                    "firstName": {
+                      "type": "string"
+                    },
+                    "lastName": {
+                    "type": "string"
+                    },
+                    "age": {
+                        "description": "Age in years",
+                        "type": "integer",
+                        "minimum": 0
+                    }
+                },
+                "required": [
+                    "firstName",
+                    "lastName"
+                ]
+            }
+			```
+3. `ls`
+    - list directory 
+4. `tail`
+    - tail displays the last part of a file.
+    - `tail -f /var/log/httpd/access_log`
+        + `-f` indicat "follow", which outputs the log lines as they are written to the file.
+    - `tail -n 100 /var/log/httpd/access_log`
+        + `-n 100` for only showing the last 100 lines.
+5. `cat`
+6. `grep`
+7. `ps`
+    - `ps` show the process status.
+    - `ps aux`  <==觀察系統所有的程序資料
+    - `ps -lA`  <==也是能夠觀察所有系統的資料
+    - `ps axjf` <==連同部分程序樹狀態
+    - `ps -ef` <==all and full format
+8. `env`
+9. `top`
+10. `netstat`
+11. `ip address`
+12. `lsof`
+13. `df`
+14. `du`
+15. `id`
+16. `chmod`
+17. `dig / nslookup`
+18. `iptables`
+19. `sestatus`
+20. `history`
