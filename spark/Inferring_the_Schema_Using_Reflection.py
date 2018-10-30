@@ -13,7 +13,7 @@ print (type(parts))
 print ("=====")
 print (parts)
 print ("=====")
-ip_rule = parts.map(lambda p: Row(ip=p[1], rule=p[3]))
+ip_rule = parts.map(lambda p: Row(ip=p[1], rule=p[4]))
 schemaIp_Rule = spark.createDataFrame(ip_rule)
 schemaIp_Rule.createOrReplaceTempView("ip_and_rule")
 
