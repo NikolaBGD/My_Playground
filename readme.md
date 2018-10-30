@@ -9,4 +9,6 @@
 	- markdown file
 	- spark
 	- django
+	- flask
 	- leetcode
+	- linux administration related syntax and concepts`
