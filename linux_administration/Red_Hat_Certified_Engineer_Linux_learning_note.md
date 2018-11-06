@@ -105,5 +105,42 @@
 - `/etc/nsswitch.conf`
     + This file lookup the specific system database for the service.
 
-# 
+# Recommended Configuration
+---
+- `/, /boot, /usr, /tmp, /var, and /home`
+- To improve security, you can mount a read-only disk as /usr to prevent one including root from editing it.
+- If the hard drive space is limited, you can create the partitions without `/var`.
+- A mail server will require more space for the `/var` directory.
+- A recommended file server partitions configuration(2002)
+  ```
+  | Filesystem | Size(MB) | Mounted Directory |
+  |------------|:--------:|:-----------------:|
+  | /dev/sda1 | 16 | /boot |
+  | /dev/sda2 | 400 | / |
+  | /dev/sda5 | 2000| /var |
+  | /dev/sda6 | 300 | /usr |
+  | /dev/sda7 | 60 | Swap space |
+  | /dev/sda8 | 1000 | /home |
+  | /dev/sda9 | 3000 | /home/shared |
+  ```
+- **Swap partitions near the front of a hard disk, thus on a primary partition, have faster access times.**
+  + 我們希望他能越快越好，因為它真的很慢。(compare with RAM)
+
+# Red Hat 7 Recommended Partitioning Scheme
+---
+1. `/boot` partition - recommended size at least 1 GiB.
+2. `/root` partition - recommended size of 10 GiB.
+3. `/home` partition - recommended size at least 1 GiB.
+4. `/swap` partition - recommended size at least 1 GB.
+5. Optional advice:
+  - In most cases, you should at least encrypt the `/home` partition.
+  - **Each kernel** installed on your system **requires approximately 20 MiB** on the `/boot` partition. The **default partition size of 1 GiB** for `/boot` should suffice for most common uses; **increase the size of this partition if you plan to keep many kernels installed at the same time.**
+  - **The `/var` directory holds content for a number of applications, including the Apache web server.** It also is used to store downloaded update packages on a temporary basis. **Ensure** that the partition containing the `/var` directory **has enough space** to download pending updates and hold your other content.
+  - If you create a separate partition or volume for `/var`, ensure that it is **at least 3GB in size to accommodate downloaded package updates.**
+  - The `/usr` directory **holds the majority of software content** on a Red Hat Enterprise Linux system. For an installation of the **default set of software, allocate at least 5 GB of space. If the system will be used as a software development workstation, allocate at least 10GB.
+  - If `/usr` or `/var` is partitioned separately from the rest of the root volume, the boot process becomes much more complex because these directories contain components critical to it. In some situations, such as when these directories are placed on an **iSCSI drive** or an **FCoE location**, the system can either be unable to boot, or it can hang with a `Device is busy` error when powering off or rebooting.
+  *This limitation only applies to /usr or /var, not to directories below them. For example, a separate partition for /var/www will work without issues.*
+  - If you separate subdirectories into partitions, you can retain content in those subdirectories if you decide to install a new version of Red Hat Enterprise Linux over your current system.
+  - On a BIOS system with its boot loader using **GPT (GUID partition table)**, you need to create the biosboot partition of **1 MiB** in size. See Section 8.14.1, “Boot Loader Installation” for more details.
+  - **UEFI systems** need to contain a small partition with a **mount point** of **/boot/efi/** containing an EFI System Partition file system. Its recommended size is **200 MiB**, which is also the default value for automatic partitioning.
 
