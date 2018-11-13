@@ -144,3 +144,51 @@
   - On a BIOS system with its boot loader using **GPT (GUID partition table)**, you need to create the biosboot partition of **1 MiB** in size. See Section 8.14.1, “Boot Loader Installation” for more details.
   - **UEFI systems** need to contain a small partition with a **mount point** of **/boot/efi/** containing an EFI System Partition file system. Its recommended size is **200 MiB**, which is also the default value for automatic partitioning.
 
+# User Environment
+---
+- `etc/skel/*`
+
+# Filesystem
+---
+- `/etc/fstab`
+
+# Networking
+---
+- `/etc/sysconfig/*`
+- `ifup/ifdown`
+- `ifconfig`
+  + `ifconfig eth0 207.174.142.142` --change ip address
+- `netstat -r`
+  + display a plethora of network connectivity
+
+# Boot Process
+---
+- Runlevels
+  + six basic runlevels
+  + Each runlevel is associated with a level of functionality in Linux.
+- fundamental Linux process
+  + printing(cups)
+  + scheduling
+  + Apache(httpd)
+  + Samba(smbd)
+- `chkconfig`
+  + a simple way to maintain different runlevels within the `/etc/rc.d`
+- `ntsysv`
+  + takes the functionality of chkconfig and wraps it into an easy-to-use screen interface.
+- `/etc/inittab`
+  + Virtual consoles are configured in the init configuration, `/etc/inittab`
+
+# Kernel Modules
+---
+- A kernel module is not compiled directly into the kernel but instead operates as a pluggable driver that can be loaded into the kernel as needed.
+- The kernel modules approach three basic advantages
+  + It reduce the size of the kernel.
+  + Smaller kernels are faster.
+  + When a module isn't required, it can be dynamically unloaded to take up less memory.
+- To see what module are loaded:
+  + `cat /proc/modules`
+  + `lsmod`
+- The `/lib/mdules/kernel_version/*`
+  + many device
+
+
