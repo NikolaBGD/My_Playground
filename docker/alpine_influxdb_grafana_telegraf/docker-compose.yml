@@ -17,14 +17,15 @@ services:
                         # - ./influxdb.conf:/etc/influxdb/influxdb.conf
 
         telegraf:
-                image: telegraf:1.6.4-alpine
+                image: telegraf:1.8.3-alpine
                 container_name: telegraf
                 # prots: 
                 # "8125:8125/udp"
                 links:
                         - influxdb
                 volumes:
-                        - ./telegraf.conf:/etc/telegraf/telegraf.conf:ro
+                        - ./telegraf3.conf:/etc/telegraf/telegraf.conf:ro
+                        - ./telegraf3.sh:/etc/init.d/telegraf
 
         grafana:
                 image: grafana/grafana
