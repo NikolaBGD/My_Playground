@@ -7,7 +7,7 @@ services:
                         - "8083:8083" # admin
                         - "8086:8086" # client-server communication over InfluxDB's HTTP API
                         - "8088:8088" # bind-address for backup
-                        - "8090:8090" # ???
+                        - "2003:8090" # ???
                 env_file:
                         - "env.influxdb"
                 volumes:
