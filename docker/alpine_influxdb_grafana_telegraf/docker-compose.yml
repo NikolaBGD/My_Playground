@@ -4,19 +4,23 @@ services:
                 image: influxdb:1.6.4-alpine
                 container_name: influxdb
                 ports: 
-                        - "8083:8083"
-                        - "8086:8086"
-                        - "8090:8090"
+                        - "8083:8083" # admin
+                        - "8086:8086" # client-server communication over InfluxDB's HTTP API
+                        - "8088:8088" # bind-address for backup
+                        - "8090:8090" # ???
                 env_file:
                         - "env.influxdb"
                 volumes:
                         # Data persistency
                         # sudo mkdir -p /srv/docker/influxdb/data
-                        - /srv/docker/influxdb/data:/var/lib/influxdb
+                        - ./influxdb:/var/lib/influxdb
+                        # - ./influxdb.conf:/etc/influxdb/influxdb.conf
 
         telegraf:
                 image: telegraf:1.6.4-alpine
                 container_name: telegraf
+                # prots: 
+                # "8125:8125/udp"
                 links:
                         - influxdb
                 volumes:
@@ -26,13 +30,14 @@ services:
                 image: grafana/grafana
                 container_name: grafana
                 ports:
-                        - "3000:3000"
-                env_file:
-                        - "env.grafana"
+                        - "3000:3000" # grafana web server
+                # env_file:
+                        # - "env.grafana"
                 links:
                         - influxdb
                 volumes: 
                         # Data persistency
                         # sudo mkdir -p /srv/docker/grafana/data; chown 472:472 /srv/docker/grafana/data
-                        - /srv/docker/grafana/data:/var/lib/grafana
+                        - ./grafana:/var/lib/grafana
+                        # - ./grafana.conf:/etc/grafana/grafana.conf
 
