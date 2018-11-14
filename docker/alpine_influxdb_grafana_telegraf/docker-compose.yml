@@ -24,7 +24,8 @@ services:
                 links:
                         - influxdb
                 volumes:
-                        - ./telegraf.conf:/etc/telegraf/telegraf.conf:ro
+                        - ./telegraf3.conf:/etc/telegraf/telegraf.conf:ro
+                        - ./telegraf3.sh:/etc/init.d/telegraf
 
         grafana:
                 image: grafana/grafana
